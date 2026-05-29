@@ -98,44 +98,49 @@ export default function ProductsPage({
       )}
 
       {/* PRODUCTS GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
 
         {products.map((p) => (
-          <div
-            key={p.id}
-            className="border border-white/10 rounded-2xl p-4 bg-[#0b0b0b] hover:border-white transition-all duration-300"
-          >
+         <div
+  key={p.id}
+  className="border border-white/10 rounded-2xl bg-[#0b0b0b] hover:border-white transition-all duration-300 overflow-hidden flex flex-col"
+>
 
-            {/* IMAGE */}
-            <div className="h-52 flex items-center justify-center overflow-hidden mb-4">
-              <img
-                src={p.image}
-                alt={p.name}
-                className="w-full h-full object-contain"
-              />
-            </div>
+  {/* IMAGE - PERFECT SQUARE */}
+  <div className="aspect-square w-full flex items-center justify-center p-4 bg-black/20">
+    <img
+      src={p.image}
+      alt={p.name}
+      className="w-full h-full object-contain hover:scale-105 transition duration-500"
+    />
+  </div>
 
-            {/* PRODUCT NAME */}
-            <h2 className="font-semibold text-lg mb-2 line-clamp-2">
-              {p.name}
-            </h2>
+  {/* CONTENT */}
+  <div className="p-4 sm:p-5 flex flex-col flex-1">
 
-            {/* PRICE */}
-            <p className="text-xl font-bold text-gray-200 mb-4">
-              ₹{p.price}
-            </p>
+    {/* NAME */}
+    <h2 className="font-semibold text-sm sm:text-base lg:text-lg mb-2 line-clamp-2">
+      {p.name}
+    </h2>
 
-            {/* BUY BUTTON */}
-            <a
-              href={p.affiliate_link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-center bg-white text-black py-2 rounded-xl font-medium hover:bg-gray-200 transition"
-            >
-              Buy Now
-            </a>
+    {/* PRICE */}
+    <p className="text-lg sm:text-xl font-bold text-gray-200 mb-4">
+      ₹{p.price}
+    </p>
 
-          </div>
+    {/* BUTTON (always bottom aligned) */}
+    <a
+      href={p.affiliate_link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="mt-auto block text-center bg-white text-black py-2 rounded-xl font-medium hover:bg-gray-200 transition"
+    >
+      Buy Now
+    </a>
+
+  </div>
+
+</div>
         ))}
 
       </div>

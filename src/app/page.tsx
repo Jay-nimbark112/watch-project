@@ -12,7 +12,6 @@ export default function Home() {
   useEffect(() => {
     setMounted(true);
 
-    // Show intro every time user visits page
     const timer = setTimeout(() => {
       setShowIntro(false);
     }, 800);
@@ -20,10 +19,10 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Prevent hydration issue
   if (!mounted) return null;
+
   return (
-    <main className="bg-black text-white h-screen overflow-hidden flex flex-col">
+    <main className="bg-black text-white min-h-screen overflow-x-hidden flex flex-col">
 
       {/* INTRO */}
       <AnimatePresence>
@@ -34,23 +33,23 @@ export default function Home() {
             transition={{ duration: 1 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black"
           >
-            <div className="absolute w-[700px] h-[700px] bg-zinc-800/20 blur-3xl rounded-full"></div>
+            <div className="absolute w-[300px] md:w-[700px] h-[300px] md:h-[700px] bg-zinc-800/20 blur-3xl rounded-full"></div>
 
             <div className="relative text-center px-6">
-              <p className="uppercase tracking-[0.5em] text-zinc-500 text-xs md:text-sm mb-8">
+              <p className="uppercase tracking-[0.3em] md:tracking-[0.5em] text-zinc-500 text-[10px] md:text-sm mb-6 md:mb-8">
                 Exclusive Luxury Collection
               </p>
 
-              <h1 className="uppercase leading-[1.15] font-extralight">
-                <span className="block text-6xl md:text-[9rem] italic text-white">
+              <h1 className="uppercase leading-[1.1] font-extralight">
+                <span className="block text-4xl sm:text-6xl md:text-[9rem] italic text-white">
                   Limited
                 </span>
 
-                <span className="block text-5xl md:text-[7rem] tracking-[0.08em] italic text-zinc-200">
+                <span className="block text-3xl sm:text-5xl md:text-[7rem] tracking-[0.08em] italic text-zinc-200">
                   Timepiece
                 </span>
 
-                <span className="block mt-6 text-sm md:text-lg tracking-[0.6em] text-zinc-500">
+                <span className="block mt-4 md:mt-6 text-[10px] md:text-lg tracking-[0.4em] md:tracking-[0.6em] text-zinc-500">
                   FOR LIMITED PEOPLE
                 </span>
               </h1>
@@ -59,145 +58,137 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* MAIN CONTENT */}
+      {/* MAIN */}
       {!showIntro && (
         <>
           {/* NAVBAR */}
-<header className="w-full flex items-center h-20 px-10 border-b border-zinc-900">
-  
-  {/* LEFT - LOGO */}
-  <div className="flex items-center">
-    <Image
-      src="/tpl2.png"
-      alt="Limited Timepiece Logo"
-      width={120}
-      height={40}
-      className="object-contain"
-      priority
-    />
-  </div>
+          <header className="w-full flex flex-col sm:flex-row items-center justify-between h-auto sm:h-20 px-4 sm:px-10 py-4 border-b border-zinc-900 gap-4 sm:gap-0">
 
-  {/* CENTER - TITLE (true center using flex grow spacer) */}
-  <div className="flex-1 flex justify-center">
-    <h1 className="text-white font-bold tracking-[0.4em] text-sm md:text-base uppercase whitespace-nowrap">
-      TimePiece Luxury
-    </h1>
-  </div>
+            {/* LOGO */}
+            <div className="flex items-center">
+              <Image
+                src="/tpl2.png"
+                alt="Limited Timepiece Logo"
+                width={100}
+                height={35}
+                className="object-contain"
+                priority
+              />
+            </div>
 
-  {/* RIGHT - NAV (FORCED RIGHT EDGE) */}
-  <div className="flex items-center justify-end ml-auto gap-10 whitespace-nowrap text-sm uppercase tracking-[0.2em] text-zinc-400">
-    <Link href="/about" className="hover:text-white transition">
-      About
-    </Link>
+            {/* TITLE */}
+            <h1 className="text-white font-bold tracking-[0.3em] text-xs sm:text-sm md:text-base uppercase whitespace-nowrap text-center">
+              TimePiece Luxury
+            </h1>
 
-    <Link href="/contact" className="hover:text-white transition">
-      Contact
-    </Link>
-  </div>
+            {/* NAV */}
+            <div className="flex items-center gap-6 sm:gap-10 text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400">
+              <Link href="/about" className="hover:text-white transition">
+                About
+              </Link>
 
-</header>
+              <Link href="/contact" className="hover:text-white transition">
+                Contact
+              </Link>
+            </div>
+
+          </header>
 
           {/* CENTER */}
-          <section className="flex-1 flex items-center justify-center px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-6xl">
+          <section className="flex-1 flex items-center justify-center px-4 sm:px-8 py-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 w-full max-w-6xl">
 
-           {/* CARD 1: AFFILIATE STORE */}
-<Link href="/affiliate">
-  <motion.div
-    whileHover={{ y: -10 }}
-    transition={{ duration: 0.4 }}
-    className="relative h-[350px] rounded-[2rem] p-[2px] overflow-hidden cursor-pointer"
-  >
-    {/* ROTATING BORDER EFFECT */}
-    <div 
-      className="absolute inset-[-100%] animate-[spin_4s_linear_infinite]"
-      style={{
-        background: 'conic-gradient(from 0deg, transparent 60%, #fff 90%, transparent 100%)'
-      }}
-    />
+              {/* CARD 1 */}
+              <Link href="/affiliate">
+                <motion.div
+  whileHover={{ y: -10 }}
+  className="relative h-[220px] sm:h-[300px] rounded-[2rem] p-[2px] overflow-hidden cursor-pointer"
+>
+                  <div
+                    className="absolute inset-[-100%] animate-[spin_4s_linear_infinite]"
+                    style={{
+                      background: 'conic-gradient(from 0deg, transparent 60%, #fff 90%, transparent 100%)'
+                    }}
+                  />
 
-    {/* INNER CARD */}
-    <div className="relative z-10 h-full bg-zinc-950 border border-zinc-800 rounded-[2rem] p-14">
-      
-      <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                  <div className="relative z-10 h-full bg-zinc-950 border border-zinc-800 rounded-[2rem] p-5 sm:p-10">
 
-      <div className="relative h-full flex flex-col justify-between">
-        <div>
-          <p className="uppercase tracking-[0.4em] text-zinc-500 text-xs mb-6">
-            Luxury Partners
-          </p>
+                    <div className="relative h-full flex flex-col justify-between">
 
-          <h2 className="text-4xl md:text-5xl font-extralight uppercase leading-[1.2]">
-            Affiliate
-            <br />
-            Store
-          </h2>
-        </div>
+                     <div className="w-full">
+  <p className="uppercase tracking-[0.3em] text-zinc-500 text-[10px] sm:text-xs mb-3">
+    Luxury Partners
+  </p>
 
-        <p className="text-zinc-500 uppercase tracking-[0.2em] text-sm">
-          Explore Exclusive Collections
-        </p>
-      </div>
+  <h2 className="text-2xl sm:text-3xl md:text-5xl font-extralight uppercase leading-[1.1]">
+    Affiliate<br />Store
+  </h2>
+</div>
+                      <p className="w-full text-zinc-500 uppercase tracking-[0.2em] text-xs sm:text-sm">
+  Explore Exclusive Collections
+</p>
 
-    </div>
-  </motion.div>
-</Link>
+                    </div>
 
-{/* CARD 2: MY STORE */}
-<Link href="/store">
-  <motion.div
-    whileHover={{ y: -10 }}
-    transition={{ duration: 0.4 }}
-    className="relative h-[350px] rounded-[2rem] p-[2px] overflow-hidden cursor-pointer"
-  >
-    {/* ROTATING BORDER EFFECT */}
-    <div 
-      className="absolute inset-[-100%] animate-[spin_4s_linear_infinite]"
-      style={{
-        background: 'conic-gradient(from 0deg, transparent 60%, #fff 90%, transparent 100%)'
-      }}
-    />
+                  </div>
+                </motion.div>
+              </Link>
 
-    <div className="relative z-10 h-full bg-zinc-950 border border-zinc-800 rounded-[2rem] p-14">
+              {/* CARD 2 */}
+              <Link href="/store">
+              <motion.div
+  whileHover={{ y: -10 }}
+  className="relative h-[220px] sm:h-[300px] rounded-[2rem] p-[2px] overflow-hidden cursor-pointer"
+>
+                  <div
+                    className="absolute inset-[-100%] animate-[spin_4s_linear_infinite]"
+                    style={{
+                      background: 'conic-gradient(from 0deg, transparent 60%, #fff 90%, transparent 100%)'
+                    }}
+                  />
 
-      <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                  <div className="relative z-10 h-full bg-zinc-950 border border-zinc-800 rounded-[2rem] p-6 sm:p-14">
 
-      <div className="relative h-full flex flex-col justify-between">
-        <div>
-          <p className="uppercase tracking-[0.4em] text-zinc-500 text-xs mb-6">
-            Signature Collection
-          </p>
+                    <div className="relative h-full w-full flex flex-col justify-between">
 
-          <h2 className="text-4xl md:text-5xl font-extralight uppercase leading-[1.2]">
-            My
-            <br />
-            Store
-          </h2>
-        </div>
+                      <div>
+                        <p className="uppercase tracking-[0.3em] sm:tracking-[0.4em] text-zinc-500 text-[10px] sm:text-xs mb-4 sm:mb-6">
+                          Signature Collection
+                        </p>
 
-        <div>
-          <p className="text-zinc-400 uppercase tracking-[0.25em] text-sm mb-2">
-            Coming Soon
-          </p>
+                        <h2 className="text-2xl sm:text-4xl md:text-5xl font-extralight uppercase leading-[1.2]">
+                          My
+                          <br />
+                          Store
+                        </h2>
+                      </div>
 
-          <p className="text-zinc-600 text-sm">
-            Virtual Store in Preparation
-          </p>
-        </div>
-      </div>
+                      <div>
+                        <p className="text-zinc-400 uppercase tracking-[0.2em] text-xs sm:text-sm mb-1">
+                          Coming Soon
+                        </p>
 
-    </div>
-  </motion.div>
-</Link>
+                        <p className="text-zinc-600 text-xs sm:text-sm">
+                          Virtual Store in Preparation
+                        </p>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </motion.div>
+              </Link>
+
             </div>
           </section>
 
           {/* FOOTER */}
           <footer className="border-t border-zinc-900 py-6 text-center">
-            <p className="text-zinc-600 uppercase tracking-[0.3em] text-xs">
+            <p className="text-zinc-600 uppercase tracking-[0.3em] text-[10px] sm:text-xs">
               Limited Timepiece © 2026
             </p>
           </footer>
+
         </>
       )}
     </main>
