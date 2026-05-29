@@ -13,23 +13,31 @@ export default function AffiliateStore() {
   const [watches, setWatches] = useState<Brand[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
+useEffect(() => {
+  const fetchData = async () => {
+    try {
       const { data, error } = await supabase
         .from("brands")
         .select("name, image");
 
       if (error) {
-        console.log(error);
+        console.log("Supabase error:", error);
+        setLoading(false);
         return;
       }
 
-      setWatches(data || []);
-      setLoading(false);
-    };
+      console.log("DATA:", data);
 
-    fetchData();
-  }, []);
+      setWatches(data || []);
+    } catch (err) {
+      console.log("Unexpected error:", err);
+    } finally {
+      setLoading(false); // ✅ ALWAYS runs
+    }
+  };
+
+  fetchData();
+}, []);
 
   // slug function
   const slugify = (text: string) =>
