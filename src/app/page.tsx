@@ -86,13 +86,13 @@ export default function Home() {
 
   {/* RIGHT - NAV (FORCED RIGHT EDGE) */}
   <div className="flex items-center justify-end ml-auto gap-10 whitespace-nowrap text-sm uppercase tracking-[0.2em] text-zinc-400">
-    <a href="#" className="hover:text-white transition">
+    <Link href="/about" className="hover:text-white transition">
       About
-    </a>
+    </Link>
 
-    <a href="#" className="hover:text-white transition">
+    <Link href="/contact" className="hover:text-white transition">
       Contact
-    </a>
+    </Link>
   </div>
 
 </header>
