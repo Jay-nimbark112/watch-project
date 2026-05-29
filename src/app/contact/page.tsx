@@ -23,7 +23,7 @@ export default function ContactPage() {
               href="mailto:support@watchproject.com"
               className="text-gray-400 hover:text-white transition"
             >
-              support@knightjay096@gmail.com
+              knightjay096@gmail.com
             </a>
           </div>
 
